@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gamez Lamadrid Taller - Arquitectura y Diseño</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="logo">
+                <h1>GALATA</h1>
+                <p class="tagline">Gamez Lamadrid Taller</p>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#works" class="nav-link active">Proyectos</a></li>
+                <li><a href="#about" class="nav-link">Estudio</a></li>
+                <li><a href="#contact" class="nav-link">Contacto</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Arquitectura y Diseño</h2>
+            <p>Transformando espacios, creando experiencias</p>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="works" class="projects-section">
+        <div class="projects-container">
+            <div class="projects-grid" id="projectsGrid">
+                <!-- Projects will be populated here by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Modal -->
+    <div id="projectModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="modal-body">
+                <div class="modal-images">
+                    <img id="modalImage" src="" alt="Proyecto">
+                    <div class="image-nav">
+                        <button id="prevImage" class="image-nav-btn">&lt;</button>
+                        <button id="nextImage" class="image-nav-btn">&gt;</button>
+                    </div>
+                </div>
+                <div class="modal-info">
+                    <h2 id="modalTitle"></h2>
+                    <p id="modalDescription"></p>
+                    <div class="modal-tags">
+                        <span id="modalCategory" class="tag"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="about-container">
+            <div class="about-content">
+                <h2>Sobre Nosotros</h2>
+                <p>Gamez Lamadrid Taller es un estudio de arquitectura y diseño dedicado a crear espacios innovadores y funcionales. Combinamos diseño contemporáneo con una profunda comprensión de las necesidades de nuestros clientes.</p>
+                <p>Desde remodelaciones residenciales hasta proyectos comerciales y de infraestructura, nuestro trabajo se caracteriza por la atención al detalle, el uso de materiales de calidad y una filosofía de diseño centrada en la experiencia del usuario.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="contact-container">
+            <h2>Contacto</h2>
+            <p>Para consultas sobre proyectos, colaboraciones o más información:</p>
+            <div class="contact-info">
+                <a href="https://www.instagram.com/gamez_lamadrid_taller/" target="_blank" class="contact-link">Instagram: @gamez_lamadrid_taller</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 Gamez Lamadrid Taller. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
