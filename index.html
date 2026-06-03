@@ -11,7 +11,7 @@
     <!-- SIDEBAR -->
     <aside class="sidebar">
         <div class="sidebar-logo">
-            <a href="index.html" class="logo-link">
+            <a href="#hero" class="logo-link" data-section="hero">
                 <span class="logo-main">GALATA</span>
                 <span class="logo-sub">Gamez Lamadrid Taller</span>
             </a>
@@ -26,27 +26,27 @@
         </div>
     </aside>
 
-    <!-- MAIN CONTENT -->
+    <!-- MAIN -->
     <main class="main">
 
         <!-- HOME / HERO -->
         <section class="section section-hero active" id="hero">
-            <div class="hero-image-wrap">
-                <img src="images/proyecto-1-1.png" alt="Gamez Lamadrid Taller" class="hero-img" id="heroImg">
+            <div class="hero-frame">
+                <img src="images/proyecto-1-1.png" alt="Gamez Lamadrid Taller" class="hero-img">
             </div>
         </section>
 
         <!-- PROYECTOS -->
         <section class="section section-projects" id="proyectos">
-            <div class="projects-grid" id="projectsGrid"></div>
+            <div class="projects-flow" id="projectsFlow"></div>
         </section>
 
         <!-- GALATA -->
         <section class="section section-about" id="galata">
             <div class="about-content">
                 <h2>Galata</h2>
-                <p>Gamez Lamadrid Taller es un estudio de arquitectura y diseño dedicado a crear espacios innovadores y funcionales. Combinamos diseño contemporáneo con una profunda comprensión de las necesidades de nuestros clientes.</p>
-                <p>Desde remodelaciones residenciales hasta proyectos comerciales e industriales, nuestro trabajo se caracteriza por la atención al detalle, el uso de materiales de calidad y una filosofía de diseño centrada en la experiencia del usuario.</p>
+                <p>Gamez Lamadrid Taller es un estudio de arquitectura y diseño dedicado a crear espacios innovadores y funcionales. Combinamos diseño contemporáneo con una profunda comprensión de las necesidades de cada cliente.</p>
+                <p>Desde remodelaciones residenciales hasta proyectos comerciales e industriales, nuestro trabajo se caracteriza por la atención al detalle, el uso de materiales nobles y una filosofía de diseño centrada en la experiencia de quien habita el espacio.</p>
             </div>
         </section>
 
@@ -55,28 +55,45 @@
             <div class="contact-content">
                 <h2>Contacto</h2>
                 <p>Para consultas sobre proyectos y colaboraciones:</p>
-                <a href="https://www.instagram.com/gamez_lamadrid_taller/" target="_blank">Instagram</a>
+                <a href="https://www.instagram.com/gamez_lamadrid_taller/" target="_blank">Instagram — @gamez_lamadrid_taller</a>
             </div>
         </section>
 
     </main>
 
-    <!-- PROJECT MODAL -->
-    <div class="modal" id="modal">
-        <button class="modal-close" id="modalClose">&times;</button>
-        <div class="modal-inner">
-            <div class="modal-image-wrap">
-                <button class="modal-arrow modal-prev" id="modalPrev">&#8592;</button>
-                <img src="" alt="" class="modal-img" id="modalImg">
-                <button class="modal-arrow modal-next" id="modalNext">&#8594;</button>
-                <div class="modal-counter" id="modalCounter"></div>
+    <!-- PROJECT DETAIL OVERLAY -->
+    <div class="detail" id="detail" aria-hidden="true">
+        <aside class="detail-sidebar">
+            <button class="detail-back" id="detailBack">&larr; Proyectos</button>
+            <div class="detail-meta">
+                <h2 class="detail-title" id="detailTitle"></h2>
+                <nav class="detail-nav">
+                    <a class="detail-nav-item active" data-target="imagenes">Imágenes</a>
+                    <a class="detail-nav-item" data-target="texto">Texto</a>
+                    <a class="detail-nav-item" data-target="informacion">Información</a>
+                </nav>
             </div>
-            <div class="modal-info">
-                <p class="modal-category" id="modalCategory"></p>
-                <h2 class="modal-title" id="modalTitle"></h2>
-                <p class="modal-desc" id="modalDesc"></p>
-                <p class="modal-location" id="modalLocation"></p>
-            </div>
+            <div class="detail-counter" id="detailCounter"></div>
+        </aside>
+
+        <div class="detail-scroll" id="detailScroll">
+            <section class="detail-section detail-images" id="sec-imagenes">
+                <div class="detail-gallery" id="detailGallery"></div>
+            </section>
+
+            <section class="detail-section detail-text" id="sec-texto">
+                <div class="detail-block">
+                    <h3 id="detailTextTitle"></h3>
+                    <p id="detailDesc"></p>
+                </div>
+            </section>
+
+            <section class="detail-section detail-info" id="sec-informacion">
+                <div class="detail-block">
+                    <h3>Información</h3>
+                    <dl class="info-list" id="detailInfoList"></dl>
+                </div>
+            </section>
         </div>
     </div>
 

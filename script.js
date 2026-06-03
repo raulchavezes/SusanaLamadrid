@@ -1,21 +1,19 @@
+// ─── Datos de proyectos ───
 const projects = [
     {
         id: 1,
-        title: "Remodelación Cafetería Terrible Juan",
-        category: "Comercial",
+        title: "Cafetería Terrible Juan",
+        category: "Comercial · Remodelación",
         location: "Montenegro",
-        description: "Remodelación completa de cafetería con diseño moderno, enfoque en materiales cálidos e iluminación natural.",
-        images: [
-            "images/proyecto-1-1.png",
-            "images/proyecto-1-2.png",
-            "images/proyecto-1-3.png",
-            "images/proyecto-1-4.png",
-            "images/proyecto-1-5.png",
-            "images/proyecto-1-6.png",
-            "images/proyecto-1-7.png",
-            "images/proyecto-1-8.png",
-            "images/proyecto-1-9.png",
-            "images/proyecto-1-10.png"
+        description: "Remodelación integral de la cafetería Terrible Juan en Montenegro. El proyecto recupera la calidez del local con materiales nobles —ladrillo expuesto, madera y vegetación— priorizando la luz natural y una atmósfera acogedora para la experiencia del comensal.",
+        cover: "images/proyecto-1-1.png",
+        slides: [
+            { type: "pair",   images: ["images/proyecto-1-1.png", "images/proyecto-1-2.png"] },
+            { type: "single", images: ["images/proyecto-1-3.png"] },
+            { type: "pair",   images: ["images/proyecto-1-4.png", "images/proyecto-1-5.png"] },
+            { type: "single", images: ["images/proyecto-1-6.png"] },
+            { type: "pair",   images: ["images/proyecto-1-7.png", "images/proyecto-1-8.png"] },
+            { type: "pair",   images: ["images/proyecto-1-9.png", "images/proyecto-1-10.png"] }
         ]
     },
     {
@@ -23,32 +21,36 @@ const projects = [
         title: "12 Apóstoles",
         category: "Residencial",
         location: "Cerro del Cuatro",
-        description: "Integración de segundo piso para talleres, aprovechando el espacio existente con diseño funcional y materiales expuestos.",
-        images: ["images/proyecto-2-1.png"]
+        description: "Integración de un segundo piso para talleres, aprovechando la estructura existente con un lenguaje de materiales expuestos y un diseño funcional que dialoga con el contexto del cerro.",
+        cover: "images/proyecto-2-1.png",
+        slides: [ { type: "single", images: ["images/proyecto-2-1.png"] } ]
     },
     {
         id: 3,
         title: "Casa en Cañadas",
         category: "Residencial · Interiorismo",
         location: "Cañadas",
-        description: "Proyecto integral de remodelación e interiorismo para casa familiar, integrando espacios modernos con comodidad y naturaleza.",
-        images: ["images/proyecto-3-1.png"]
+        description: "Proyecto integral de remodelación e interiorismo para una casa familiar, integrando espacios contemporáneos con comodidad y naturaleza.",
+        cover: "images/proyecto-3-1.png",
+        slides: [ { type: "single", images: ["images/proyecto-3-1.png"] } ]
     },
     {
         id: 4,
         title: "Café Terrible Juan — Providencia",
         category: "Comercial",
         location: "Providencia",
-        description: "Primera sucursal del café Terrible Juan en Providencia. Remodelación con identidad visual cálida y materiales naturales.",
-        images: ["images/proyecto-4-1.png"]
+        description: "Primera sucursal del café Terrible Juan en Providencia. Remodelación con una identidad visual cálida y materiales naturales.",
+        cover: "images/proyecto-4-1.png",
+        slides: [ { type: "single", images: ["images/proyecto-4-1.png"] } ]
     },
     {
         id: 5,
-        title: "Epona Cosméticos",
+        title: "Épona Cosméticos",
         category: "Comercial",
         location: "Guadalajara",
-        description: "Remodelación para tienda de cosméticos orgánicos inspirada en la diosa celta de la naturaleza y la fertilidad.",
-        images: ["images/proyecto-5-1.png"]
+        description: "Remodelación de local comercial para una tienda de cosméticos orgánicos, inspirada en la diosa celta de la naturaleza y la fertilidad.",
+        cover: "images/proyecto-5-1.png",
+        slides: [ { type: "single", images: ["images/proyecto-5-1.png"] } ]
     },
     {
         id: 6,
@@ -56,7 +58,8 @@ const projects = [
         category: "Residencial",
         location: "Chapala",
         description: "Proyecto residencial que integra diseño contemporáneo con elementos naturales, generando espacios abiertos y luminosos.",
-        images: ["images/proyecto-6-1.png"]
+        cover: "images/proyecto-6-1.png",
+        slides: [ { type: "single", images: ["images/proyecto-6-1.png"] } ]
     },
     {
         id: 7,
@@ -64,132 +67,172 @@ const projects = [
         category: "Residencial",
         location: "Fraccionamiento Campestre",
         description: "Proyecto de casa campestre para desarrollo inmobiliario, combinando diseño moderno con espacios amplios.",
-        images: ["images/proyecto-7-1.png"]
+        cover: "images/proyecto-7-1.png",
+        slides: [ { type: "single", images: ["images/proyecto-7-1.png"] } ]
     }
 ];
 
-// ─── Navigation ───
-const navItems = document.querySelectorAll('.nav-item');
-const sections = document.querySelectorAll('.section');
+// ─── Navegación principal ───
+const navItems = document.querySelectorAll('.sidebar-nav .nav-item');
+const sections = document.querySelectorAll('.main .section');
 const heroSection = document.getElementById('hero');
 
 function showSection(id) {
     sections.forEach(s => s.classList.remove('active'));
     navItems.forEach(n => n.classList.remove('active'));
-
     const target = document.getElementById(id) || heroSection;
     target.classList.add('active');
-
-    const activeNav = document.querySelector(`[data-section="${id}"]`);
+    const activeNav = document.querySelector(`.sidebar-nav [data-section="${id}"]`);
     if (activeNav) activeNav.classList.add('active');
 }
 
 navItems.forEach(item => {
     item.addEventListener('click', e => {
         e.preventDefault();
-        const section = item.dataset.section;
-        showSection(section);
-        history.pushState(null, '', `#${section}`);
+        showSection(item.dataset.section);
+        history.replaceState(null, '', `#${item.dataset.section}`);
     });
 });
 
-// Logo → home
 document.querySelector('.logo-link').addEventListener('click', e => {
     e.preventDefault();
     showSection('hero');
-    history.pushState(null, '', '/');
+    history.replaceState(null, '', '#hero');
 });
 
-// Handle initial hash
-const hash = location.hash.replace('#', '');
-if (hash) showSection(hash);
-else heroSection.classList.add('active');
+const initial = location.hash.replace('#', '');
+showSection(initial && document.getElementById(initial) ? initial : 'hero');
 
-// ─── Projects Grid ───
-const grid = document.getElementById('projectsGrid');
+// ─── Listado de proyectos (escalonado) ───
+const flow = document.getElementById('projectsFlow');
+const layout = [
+    { pos: 'pos-right',  w: '52%' },
+    { pos: 'pos-left',   w: '40%' },
+    { pos: 'pos-right',  w: '46%' },
+    { pos: 'pos-left',   w: '50%' },
+    { pos: 'pos-right',  w: '42%' },
+    { pos: 'pos-left',   w: '47%' },
+    { pos: 'pos-right',  w: '52%' }
+];
 
-projects.forEach(project => {
-    const card = document.createElement('div');
-    card.className = 'project-card';
+projects.forEach((project, i) => {
+    const l = layout[i % layout.length];
+    const card = document.createElement('a');
+    card.className = `project ${l.pos}`;
+    card.style.width = l.w;
+    card.href = `#proyecto-${project.id}`;
+    card.innerHTML = `
+        <div class="project-img-wrap">
+            <img src="${project.cover}" alt="${project.title}" loading="lazy">
+        </div>
+        <div class="project-caption">
+            ${project.title}
+            <span class="loc">${project.location || ''}</span>
+        </div>
+    `;
+    card.addEventListener('click', e => {
+        e.preventDefault();
+        openDetail(project.id);
+    });
+    flow.appendChild(card);
+});
 
-    const img = document.createElement('img');
-    img.src = project.images[0];
-    img.alt = project.title;
-    img.loading = 'lazy';
+// ─── Detalle de proyecto ───
+const detail = document.getElementById('detail');
+const detailTitle = document.getElementById('detailTitle');
+const detailGallery = document.getElementById('detailGallery');
+const detailCounter = document.getElementById('detailCounter');
+const detailTextTitle = document.getElementById('detailTextTitle');
+const detailDesc = document.getElementById('detailDesc');
+const detailInfoList = document.getElementById('detailInfoList');
+const detailScroll = document.getElementById('detailScroll');
+const detailBack = document.getElementById('detailBack');
+const detailNavItems = document.querySelectorAll('.detail-nav-item');
 
-    const overlay = document.createElement('div');
-    overlay.className = 'project-card-overlay';
-    overlay.innerHTML = `
-        <div class="project-card-title">${project.title}</div>
-        <div class="project-card-loc">${project.location || ''}</div>
+function openDetail(id) {
+    const p = projects.find(x => x.id === id);
+    if (!p) return;
+
+    detailTitle.textContent = p.title;
+    detailTextTitle.textContent = p.title;
+    detailDesc.textContent = p.description;
+
+    detailInfoList.innerHTML = `
+        <dt>Categoría</dt><dd>${p.category}</dd>
+        <dt>Ubicación</dt><dd>${p.location || '—'}</dd>
+        <dt>Estudio</dt><dd>Gamez Lamadrid Taller</dd>
     `;
 
-    card.appendChild(img);
-    card.appendChild(overlay);
-    card.addEventListener('click', () => openModal(project.id));
-    grid.appendChild(card);
-});
+    detailGallery.innerHTML = p.slides.map(slide => {
+        const imgs = slide.images.map(src => `<img src="${src}" alt="${p.title}">`).join('');
+        return `<div class="slide ${slide.type}">${imgs}</div>`;
+    }).join('');
 
-// ─── Modal ───
-const modal = document.getElementById('modal');
-const modalImg = document.getElementById('modalImg');
-const modalTitle = document.getElementById('modalTitle');
-const modalCategory = document.getElementById('modalCategory');
-const modalDesc = document.getElementById('modalDesc');
-const modalLocation = document.getElementById('modalLocation');
-const modalCounter = document.getElementById('modalCounter');
-const modalClose = document.getElementById('modalClose');
-const modalPrev = document.getElementById('modalPrev');
-const modalNext = document.getElementById('modalNext');
+    detailScroll.scrollTop = 0;
+    detailGallery.scrollLeft = 0;
+    setActiveDetailNav('imagenes');
+    updateCounter();
 
-let activeProject = null;
-let activeIndex = 0;
-
-function openModal(id) {
-    activeProject = projects.find(p => p.id === id);
-    activeIndex = 0;
-    renderModal();
-    modal.classList.add('open');
+    detail.classList.add('open');
+    detail.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
 }
 
-function closeModal() {
-    modal.classList.remove('open');
+function closeDetail() {
+    detail.classList.remove('open');
+    detail.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
+    showSection('proyectos');
 }
 
-function renderModal() {
-    const p = activeProject;
-    modalImg.src = p.images[activeIndex];
-    modalImg.alt = p.title;
-    modalTitle.textContent = p.title;
-    modalCategory.textContent = p.category;
-    modalDesc.textContent = p.description;
-    modalLocation.textContent = p.location || '';
-
-    const total = p.images.length;
-    modalCounter.textContent = total > 1 ? `${activeIndex + 1} / ${total}` : '';
-    modalPrev.style.display = total > 1 ? 'block' : 'none';
-    modalNext.style.display = total > 1 ? 'block' : 'none';
-}
-
-modalPrev.addEventListener('click', () => {
-    const len = activeProject.images.length;
-    activeIndex = (activeIndex - 1 + len) % len;
-    renderModal();
-});
-
-modalNext.addEventListener('click', () => {
-    activeIndex = (activeIndex + 1) % activeProject.images.length;
-    renderModal();
-});
-
-modalClose.addEventListener('click', closeModal);
-modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+detailBack.addEventListener('click', closeDetail);
 
 document.addEventListener('keydown', e => {
-    if (!modal.classList.contains('open')) return;
-    if (e.key === 'Escape') closeModal();
-    if (e.key === 'ArrowLeft') modalPrev.click();
-    if (e.key === 'ArrowRight') modalNext.click();
+    if (e.key === 'Escape' && detail.classList.contains('open')) closeDetail();
 });
+
+// contador de imágenes
+function updateCounter() {
+    const slides = [...detailGallery.children];
+    if (!slides.length) { detailCounter.textContent = ''; return; }
+    const center = detailGallery.scrollLeft + detailGallery.clientWidth / 2;
+    let idx = 0, min = Infinity;
+    slides.forEach((s, i) => {
+        const c = s.offsetLeft + s.offsetWidth / 2;
+        const d = Math.abs(c - center);
+        if (d < min) { min = d; idx = i; }
+    });
+    const pad = n => String(n).padStart(2, '0');
+    detailCounter.textContent = `${pad(idx + 1)} / ${pad(slides.length)}`;
+}
+detailGallery.addEventListener('scroll', updateCounter);
+
+// sub-navegación del detalle
+function setActiveDetailNav(target) {
+    detailNavItems.forEach(a => a.classList.toggle('active', a.dataset.target === target));
+}
+
+detailNavItems.forEach(a => {
+    a.addEventListener('click', () => {
+        const map = { imagenes: 'sec-imagenes', texto: 'sec-texto', informacion: 'sec-informacion' };
+        const el = document.getElementById(map[a.dataset.target]);
+        if (a.dataset.target === 'imagenes') {
+            detailScroll.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+            el.scrollIntoView({ behavior: 'smooth' });
+        }
+        setActiveDetailNav(a.dataset.target);
+    });
+});
+
+// sincroniza sub-nav al hacer scroll
+const detailSections = document.querySelectorAll('.detail-section');
+const io = new IntersectionObserver(entries => {
+    entries.forEach(en => {
+        if (en.isIntersecting) {
+            const t = en.target.id.replace('sec-', '');
+            setActiveDetailNav(t);
+        }
+    });
+}, { root: detailScroll, threshold: 0.55 });
+detailSections.forEach(s => io.observe(s));
